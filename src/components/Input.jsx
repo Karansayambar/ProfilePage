@@ -1,21 +1,18 @@
+
+
 import React from 'react';
 
-const Input = ({ type, name, value, placeholder, onChange }) => {
-  // Input Component takes five parameters
+const Input = ({ type, name, value, placeholder, onChange, className }) => {
   return (
-    <div className="form-group mb-1 mt-2">
-      <label htmlFor={name}>{placeholder}</label>
-      <input
-        type={type}
-        className="form-control"
-        name={name}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        aria-label={name}
-        aria-describedby="basic-addon1"
-      />
-    </div>
+    <input
+      type={type}
+      name={name}
+      value={value}
+      placeholder={placeholder}
+      onChange={onChange}
+      className={`form-control mb-2 ${className}`}
+      required
+    />
   );
 };
 

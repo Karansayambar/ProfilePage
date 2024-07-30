@@ -1,13 +1,15 @@
-import React from 'react'
-import { Button } from 'react-bootstrap'
+import React from 'react';
 
-const ButtonComponent = ({onClick, text, disabled}) => {
-  //Button Component takes parameters 
+const ButtonComponent = ({ text, onClick, disabled }) => {
   return (
-    <div className='text-center p-3'>
-        <Button variant='dark' disabled={disabled} onClick={onClick} >{text}</Button>
-    </div>
-  )
-}
+    <button
+      className="btn btn-dark mt-3"
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {text}
+    </button>
+  );
+};
 
 export default ButtonComponent;
