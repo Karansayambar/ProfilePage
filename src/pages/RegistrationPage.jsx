@@ -10,6 +10,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { toast } from "react-toastify";
 
 const RegistrationPage = () => {
+  //state management store data in this variables using useState
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -25,24 +26,20 @@ const RegistrationPage = () => {
 
   const navigate = useNavigate();
 
-  const handleClick = async () => {
+  const handleClick = async () => {// asyncronus function is called after clicking on register button
     console.log("handle login");
     setLoading(true);
     setError('');
 
-    if (password !== confirmPassword) {
+    if (password !== confirmPassword) { //password validatation
       setError("Passwords should match");
       setLoading(false);
       return;
-    } 
-
-    if (!email || !password || !confirmPassword || !firstName || !lastName || !userName || !age || !gender || !DOB) {
+    } else if (!email || !password || !confirmPassword || !firstName || !lastName || !userName || !age || !gender || !DOB) { //checks all fields are required
       setError("All fields are required");
       setLoading(false);
       return;
-    } 
-
-    if (password.length < 6) {
+    } else if (password.length < 6) { //password validation
       setError("Password should be greater than 6 characters");
       setLoading(false);
       return;
@@ -59,7 +56,7 @@ const RegistrationPage = () => {
         profileUrl = await getDownloadURL(profileRef);
       }
 
-      await setDoc(doc(db, "users", user.uid), {
+      await setDoc(doc(db, "users", user.uid), { //arrange data in storage of firebase in document format
         firstName,
         lastName,
         userName,
@@ -91,6 +88,7 @@ const RegistrationPage = () => {
             <div className="card-body">
               <h3 className="card-title text-center mb-4">Register Page</h3>
               <div className="d-flex gap-3">
+              {/* Input component renders and send type, name, placeholder, value and onChange to Input Component */}
                 <Input type="text" name="firstName" value={firstName} placeholder="First Name" onChange={(e) => setFirstName(e.target.value)} required />
                 <Input type="text" name="lastName" value={lastName} placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} required />
               </div>
@@ -117,6 +115,7 @@ const RegistrationPage = () => {
                 <Input className="p-0 m-0 w-75px" type="file" name="profile" placeholder="Profile Image" onChange={(e) => setProfile(e.target.files[0])} required />
               </div>
               <div>
+             {/* {Button Component renders and sends onClick, text, disabled to ButtonComponent} */}
                 <ButtonComponent
                 text={loading ? (
                   <Bars

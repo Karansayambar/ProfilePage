@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Input = ({ type, name, value, placeholder, onChange }) => {
+  // Input Component takes five parameters
   return (
     <div className="form-group mb-1 mt-2">
       <label htmlFor={name}>{placeholder}</label>

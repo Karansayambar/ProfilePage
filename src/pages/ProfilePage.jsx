@@ -8,6 +8,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, storage } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import "../../src/App.css"
 
 const ProfilePage = () => {
   const { userData, error, loading } = useSelector((state) => state.user);
@@ -22,8 +23,10 @@ const ProfilePage = () => {
     if(!user){
       navigate("/login");
     }else if(user && !userData){
-      console.log("this code is run")
-      dispatch(fetchUser(user.uid));
+      // dispatch(fetchUser(user.uid));
+       setTimeout(() => {
+            dispatch(fetchUser(user.uid));
+      }, 1000)
     }
   }, [userData, dispatch, navigate]);
 
@@ -122,8 +125,8 @@ const ProfilePage = () => {
               ) : (
                 <div>
                   {userData.profileUrl && (
-              <div className="m-2 border rounded-circle h-25 w-25 md-w-100 md-h-100">
-                <img src={userData.profileUrl} alt="Profile" className="img-fluid  border rounded-circle object-fit-cover" />
+              <div className="profile-img m-2 h-25 w-25 md-w-100 md-h-100">
+                <img src={userData.profileUrl} alt="Profile" className="img img-fluid" />
               </div>
             )}
                   <div>
@@ -145,7 +148,8 @@ const ProfilePage = () => {
           </div>
         </div>
       ) : (
-        <div>No user data available</div>
+        <div>No user data available
+        </div>
       )}
     </div>
   );
