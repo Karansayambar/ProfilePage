@@ -23,10 +23,7 @@ const ProfilePage = () => {
     if(!user){
       navigate("/login");
     }else if(user && !userData){
-      // dispatch(fetchUser(user.uid));
-       setTimeout(() => {
-            dispatch(fetchUser(user.uid));
-      }, 1000)
+      dispatch(fetchUser(user.uid));
     }
   }, [userData, dispatch, navigate]);
 
@@ -149,6 +146,11 @@ const ProfilePage = () => {
         </div>
       ) : (
         <div>No user data available
+          {
+            setTimeout(() => {
+            navigate("/login")
+      }, 1000)
+          }
         </div>
       )}
     </div>

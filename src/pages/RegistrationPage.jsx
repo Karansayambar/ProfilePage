@@ -54,7 +54,7 @@ const RegistrationPage = () => {
         const profileRef = ref(storage, `profile/${user.uid}`);
         await uploadBytes(profileRef, profile);
         profileUrl = await getDownloadURL(profileRef);
-      }
+
 
       await setDoc(doc(db, "users", user.uid), { //arrange data in storage of firebase in document format
         firstName,
@@ -70,6 +70,7 @@ const RegistrationPage = () => {
       navigate("/profile");
       toast.success("User Register Successfully")
       console.log("user", user);
+    }
     } catch (error) {
       toast.error(error.message)
       console.log("error", error);
